@@ -25,19 +25,30 @@ class WeatherViewController: UIViewController {
     let temperatureLabel = UILabel()
     let cityLabel = UILabel()
     
+    // alert for location button.
+    let alertNotPermitLocationService: UIAlertController = {
+        let alert = UIAlertController(
+            title: "Location service is disabled",
+            message: "You must allow us to access your location in order to update the weather at your current location.",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        return alert
+    }()
+    
     var weatherManager = WeatherManager()
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Apply delegate pattern.
         searchTextField.delegate = self
         weatherManager.delegate = self
         locationManager.delegate = self
         
         locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
         
         style()
         layout()
@@ -45,13 +56,13 @@ class WeatherViewController: UIViewController {
         searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
         locationButton.addTarget(self, action: #selector(locationButtonPressed), for: .touchUpInside)
     }
-
+    
 }
 
 
 // MARK: - Auto Layout Programmatic
 extension WeatherViewController {
- 
+    
     func makeTemperatureText(with temperature: String) -> NSAttributedString {
         var boldTextAttributes = [NSAttributedString.Key: AnyObject]()
         boldTextAttributes[.foregroundColor] = UIColor.label
@@ -124,7 +135,7 @@ extension WeatherViewController {
         // Add all subviews to view hierarchy.
         view.addSubview(backgroundImageView)
         view.addSubview(rootStackView)
-
+        
         // Add all rootStackView's subviews.
         rootStackView.addArrangedSubview(searchStackView)
         rootStackView.addArrangedSubview(conditionImageView)
@@ -155,7 +166,7 @@ extension WeatherViewController {
             // locationButton.
             locationButton.widthAnchor.constraint(equalToConstant: 40),
             locationButton.heightAnchor.constraint(equalToConstant: 40),
-
+            
             // searchButton.
             searchButton.widthAnchor.constraint(equalToConstant: 40),
             searchButton.heightAnchor.constraint(equalToConstant: 40),
@@ -179,7 +190,12 @@ extension WeatherViewController {
     
     // locationButton.
     @objc func locationButtonPressed(_ sender: UIButton) {
-        locationManager.requestLocation()
+        switch locationManager.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        default:  // .denied, .notDetermined, .restricted, other options.
+            self.present(alertNotPermitLocationService, animated: true, completion: nil)
+        }
     }
     
 }
@@ -194,11 +210,7 @@ extension WeatherViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if searchTextField.text != "" {
-            return true
-        }
-        
-        return false
+        return searchTextField.text != ""
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -231,10 +243,27 @@ extension WeatherViewController: WeatherManagerDelegate {
 
 
 // MARK: - CLLocationManagerDelegate
+// Reference: https://itnext.io/swift-ios-cllocationmanager-all-in-one-b786ffd37e4a
 extension WeatherViewController: CLLocationManagerDelegate {
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch locationManager.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        default:  // .denied, .notDetermined, .restricted, other options
+            break
+        }
+    }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
+        
+        if let error = error as? CLError, error.code == .denied {
+            // Location updates are not authorized.
+            // To prevent forever looping of `didFailWithError` callback.
+            locationManager.stopMonitoringSignificantLocationChanges()
+            return
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
