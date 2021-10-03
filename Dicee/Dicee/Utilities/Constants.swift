@@ -7,7 +7,7 @@
 
 struct Constants {
     
-    struct ImageName {
+    struct Image {
     
         static let background = "GreenBackground"
         static let logo = "DiceeLogo"

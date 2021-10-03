@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: Constants.ImageName.background)
+        imageView.image = UIImage(named: Constants.Image.background)
         
         return imageView
     }()
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
     let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: Constants.ImageName.logo)
+        imageView.image = UIImage(named: Constants.Image.logo)
         imageView.contentMode = .scaleAspectFit
 
         return imageView
@@ -64,22 +64,20 @@ class ViewController: UIViewController {
         return stackView
     }()
 
-    let leftDiceButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: Constants.ImageName.Dice.five), for: .normal)
-        button.tintColor = .label
+    let leftDiceImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: Constants.Image.Dice.five)
 
-        return button
+        return imageView
     }()
 
-    let rightDiceButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: Constants.ImageName.Dice.one), for: .normal)
-        button.tintColor = .label
+    let rightDiceImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: Constants.Image.Dice.one)
 
-        return button
+        return imageView
     }()
     
     let rollButton: UIButton = {
@@ -94,12 +92,12 @@ class ViewController: UIViewController {
     }()
     
     let dicesImage = [
-        UIImage(imageLiteralResourceName: Constants.ImageName.Dice.one),
-        UIImage(imageLiteralResourceName: Constants.ImageName.Dice.two),
-        UIImage(imageLiteralResourceName: Constants.ImageName.Dice.three),
-        UIImage(imageLiteralResourceName: Constants.ImageName.Dice.four),
-        UIImage(imageLiteralResourceName: Constants.ImageName.Dice.five),
-        UIImage(imageLiteralResourceName: Constants.ImageName.Dice.six),
+        UIImage(imageLiteralResourceName: Constants.Image.Dice.one),
+        UIImage(imageLiteralResourceName: Constants.Image.Dice.two),
+        UIImage(imageLiteralResourceName: Constants.Image.Dice.three),
+        UIImage(imageLiteralResourceName: Constants.Image.Dice.four),
+        UIImage(imageLiteralResourceName: Constants.Image.Dice.five),
+        UIImage(imageLiteralResourceName: Constants.Image.Dice.six),
     ]
     
     override func viewDidLoad() {
@@ -112,11 +110,8 @@ class ViewController: UIViewController {
     }
     
     @objc func rollButtonPressed(_ sender: UIButton) {
-        let leftIndex = Int.random(in: 0..<dicesImage.count)
-        let rightIndex = Int.random(in: 0..<dicesImage.count)
-        
-        leftDiceButton.setImage(dicesImage[leftIndex], for: .normal)
-        rightDiceButton.setImage(dicesImage[rightIndex], for: .normal)
+        leftDiceImageView.image = dicesImage.randomElement()
+        rightDiceImageView.image = dicesImage.randomElement()
     }
     
 }
@@ -143,8 +138,8 @@ extension ViewController {
         middleView.addSubview(twoDicesStackView)
         
         // Adds twoDicesStackView's subviews.
-        twoDicesStackView.addArrangedSubview(leftDiceButton)
-        twoDicesStackView.addArrangedSubview(rightDiceButton)
+        twoDicesStackView.addArrangedSubview(leftDiceImageView)
+        twoDicesStackView.addArrangedSubview(rightDiceImageView)
         
         // Adds bottomView's subviews.
         bottomView.addSubview(rollButton)
