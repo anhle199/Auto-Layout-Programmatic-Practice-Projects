@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CalculatorViewController.swift
 //  SimpleCalculator
 //
 //  Created by Le Hoang Anh on 03/10/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculatorViewController: UIViewController {
     
     let rootStackView: UIStackView = {
         let stackView = UIStackView()
@@ -50,20 +50,20 @@ class ViewController: UIViewController {
     let allClearButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("AC", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = .darkGray
+        button.setTitle(Constants.CalculatorButton.Function.allClear.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.functionButton
         button.tintColor = .label
         
         return button
     }()
     
-    let exchangeSignButton: UIButton = {
+    let negateButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("+/-", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = .darkGray
+        button.setTitle(Constants.CalculatorButton.Function.negateButton.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.functionButton
         button.tintColor = .label
         
         return button
@@ -72,9 +72,9 @@ class ViewController: UIViewController {
     let percentButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("%", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = .darkGray
+        button.setTitle(Constants.CalculatorButton.Function.percent.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.functionButton
         button.tintColor = .label
         
         return button
@@ -83,9 +83,9 @@ class ViewController: UIViewController {
     let divideButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("%", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 255 / 255.0, green: 147 / 255.0, blue: 0 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Operation.divide.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.operationButton
         button.tintColor = .label
         
         return button
@@ -104,9 +104,9 @@ class ViewController: UIViewController {
     let sevenButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("7", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 26 / 255.0, green: 173 / 255.0, blue: 248 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Number.seven.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.numberButton
         button.tintColor = .label
         
         return button
@@ -115,9 +115,9 @@ class ViewController: UIViewController {
     let eightButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("8", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 26 / 255.0, green: 173 / 255.0, blue: 248 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Number.eight.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.numberButton
         button.tintColor = .label
         
         return button
@@ -126,9 +126,9 @@ class ViewController: UIViewController {
     let nineButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("9", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 26 / 255.0, green: 173 / 255.0, blue: 248 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Number.nine.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.numberButton
         button.tintColor = .label
         
         return button
@@ -137,9 +137,9 @@ class ViewController: UIViewController {
     let multiplyButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("*", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 255 / 255.0, green: 147 / 255.0, blue: 0 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Operation.multiply.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.operationButton
         button.tintColor = .label
         
         return button
@@ -158,9 +158,9 @@ class ViewController: UIViewController {
     let fourButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("4", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 26 / 255.0, green: 173 / 255.0, blue: 248 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Number.four.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.numberButton
         button.tintColor = .label
         
         return button
@@ -169,9 +169,9 @@ class ViewController: UIViewController {
     let fiveButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("5", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 26 / 255.0, green: 173 / 255.0, blue: 248 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Number.five.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.numberButton
         button.tintColor = .label
         
         return button
@@ -180,9 +180,9 @@ class ViewController: UIViewController {
     let sixButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("6", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 26 / 255.0, green: 173 / 255.0, blue: 248 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Number.six.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.numberButton
         button.tintColor = .label
         
         return button
@@ -191,9 +191,9 @@ class ViewController: UIViewController {
     let subtractButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("-", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 255 / 255.0, green: 147 / 255.0, blue: 0 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Operation.subtract.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.operationButton
         button.tintColor = .label
         
         return button
@@ -212,9 +212,9 @@ class ViewController: UIViewController {
     let oneButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("1", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 26 / 255.0, green: 173 / 255.0, blue: 248 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Number.one.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.numberButton
         button.tintColor = .label
         
         return button
@@ -223,9 +223,9 @@ class ViewController: UIViewController {
     let twoButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("2", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 26 / 255.0, green: 173 / 255.0, blue: 248 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Number.two.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.numberButton
         button.tintColor = .label
         
         return button
@@ -234,9 +234,9 @@ class ViewController: UIViewController {
     let threeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("3", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 26 / 255.0, green: 173 / 255.0, blue: 248 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Number.three.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.numberButton
         button.tintColor = .label
         
         return button
@@ -245,9 +245,9 @@ class ViewController: UIViewController {
     let addButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("+", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 255 / 255.0, green: 147 / 255.0, blue: 0 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Operation.add.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.operationButton
         button.tintColor = .label
         
         return button
@@ -266,9 +266,9 @@ class ViewController: UIViewController {
     let zeroButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("0", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 26 / 255.0, green: 173 / 255.0, blue: 248 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Number.zero.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.numberButton
         button.tintColor = .label
         
         return button
@@ -286,9 +286,9 @@ class ViewController: UIViewController {
     let dotButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(".", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 26 / 255.0, green: 173 / 255.0, blue: 248 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.SpecialSign.dot.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.specialSignButton
         button.tintColor = .label
         
         return button
@@ -297,9 +297,9 @@ class ViewController: UIViewController {
     let equalButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("=", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.backgroundColor = UIColor(red: 255 / 255.0, green: 147 / 255.0, blue: 0 / 255.0, alpha: 1)
+        button.setTitle(Constants.CalculatorButton.Operation.equal.title, for: .normal)
+        button.titleLabel?.font = Constants.CalculatorButton.font
+        button.backgroundColor = Constants.CalculatorButton.Color.operationButton
         button.tintColor = .label
         
         return button
@@ -316,7 +316,7 @@ class ViewController: UIViewController {
 
 
 // MARK: - Setup Views and Constraints
-extension ViewController {
+extension CalculatorViewController {
     
     func setupViews() {
         // Adds view's subviews.
@@ -336,7 +336,7 @@ extension ViewController {
         resultView.addSubview(resultLabel)
         
         // Adds firstRowStackView's subviews.
-        firstRowStackView.addArrangedSubViews([allClearButton, exchangeSignButton, percentButton, divideButton])
+        firstRowStackView.addArrangedSubViews([allClearButton, negateButton, percentButton, divideButton])
         
         // Adds secondRowStackView's subviews.
         secondRowStackView.addArrangedSubViews([sevenButton, eightButton, nineButton, multiplyButton])
