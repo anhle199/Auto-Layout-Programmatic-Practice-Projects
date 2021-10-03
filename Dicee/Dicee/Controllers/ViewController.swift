@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "GreenBackground")
+        imageView.image = UIImage(named: Constants.ImageName.background)
         
         return imageView
     }()
@@ -27,30 +27,30 @@ class ViewController: UIViewController {
     }()
     
     let topView: UIView = {
-        let uiView = UIView()
-        uiView.translatesAutoresizingMaskIntoConstraints = false
-        uiView.backgroundColor = .red
-        return uiView
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
     }()
     
     let middleView: UIView = {
         let uiView = UIView()
         uiView.translatesAutoresizingMaskIntoConstraints = false
-        uiView.backgroundColor = .green
+        
         return uiView
     }()
     
     let bottomView: UIView = {
         let uiView = UIView()
         uiView.translatesAutoresizingMaskIntoConstraints = false
-        uiView.backgroundColor = .blue
+        
         return uiView
     }()
     
     let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "DiceeLogo")
+        imageView.image = UIImage(named: Constants.ImageName.logo)
         imageView.contentMode = .scaleAspectFit
 
         return imageView
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
     let leftDiceButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "DiceFive"), for: .normal)
+        button.setImage(UIImage(named: Constants.ImageName.Dice.five), for: .normal)
         button.tintColor = .label
 
         return button
@@ -76,17 +76,47 @@ class ViewController: UIViewController {
     let rightDiceButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "DiceOne"), for: .normal)
+        button.setImage(UIImage(named: Constants.ImageName.Dice.one), for: .normal)
         button.tintColor = .label
 
         return button
     }()
+    
+    let rollButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Roll", for: .normal)
+        button.backgroundColor = .rollButtonColor
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 30)
+        button.layer.cornerRadius = 8
+        
+        return button
+    }()
+    
+    let dicesImage = [
+        UIImage(imageLiteralResourceName: Constants.ImageName.Dice.one),
+        UIImage(imageLiteralResourceName: Constants.ImageName.Dice.two),
+        UIImage(imageLiteralResourceName: Constants.ImageName.Dice.three),
+        UIImage(imageLiteralResourceName: Constants.ImageName.Dice.four),
+        UIImage(imageLiteralResourceName: Constants.ImageName.Dice.five),
+        UIImage(imageLiteralResourceName: Constants.ImageName.Dice.six),
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
         setupConstraints()
+        
+        rollButton.addTarget(self, action: #selector(rollButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc func rollButtonPressed(_ sender: UIButton) {
+        let leftIndex = Int.random(in: 0..<dicesImage.count)
+        let rightIndex = Int.random(in: 0..<dicesImage.count)
+        
+        leftDiceButton.setImage(dicesImage[leftIndex], for: .normal)
+        rightDiceButton.setImage(dicesImage[rightIndex], for: .normal)
     }
     
 }
@@ -112,9 +142,12 @@ extension ViewController {
         // Adds middleView's subviews.
         middleView.addSubview(twoDicesStackView)
         
-//        Adds twoDicesStackView's subviews.
+        // Adds twoDicesStackView's subviews.
         twoDicesStackView.addArrangedSubview(leftDiceButton)
         twoDicesStackView.addArrangedSubview(rightDiceButton)
+        
+        // Adds bottomView's subviews.
+        bottomView.addSubview(rollButton)
     }
     
     // MARK: - Setup Constraints
@@ -143,9 +176,18 @@ extension ViewController {
             logoImageView.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
         ])
         
+        // twoDicesStackView.
         NSLayoutConstraint.activate([
             twoDicesStackView.centerXAnchor.constraint(equalTo: middleView.centerXAnchor),
             twoDicesStackView.centerYAnchor.constraint(equalTo: middleView.centerYAnchor),
+        ])
+        
+        // rollButton.
+        NSLayoutConstraint.activate([
+            rollButton.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
+            rollButton.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
+            rollButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 100),
+            rollButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
