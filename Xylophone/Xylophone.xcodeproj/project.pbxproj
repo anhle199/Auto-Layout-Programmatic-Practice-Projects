@@ -14,6 +14,7 @@
 		E65CEA03270F07EF00F96FA5 /* A.wav in Resources */ = {isa = PBXBuildFile; fileRef = E65CE9FC270F07EE00F96FA5 /* A.wav */; };
 		E65CEA04270F07EF00F96FA5 /* E.wav in Resources */ = {isa = PBXBuildFile; fileRef = E65CE9FD270F07EE00F96FA5 /* E.wav */; };
 		E65CEA05270F07EF00F96FA5 /* B.wav in Resources */ = {isa = PBXBuildFile; fileRef = E65CE9FE270F07EF00F96FA5 /* B.wav */; };
+		E65CEA0C270F094E00F96FA5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65CEA0B270F094E00F96FA5 /* Constants.swift */; };
 		E6EDF606270A131E001DC50B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EDF605270A131E001DC50B /* AppDelegate.swift */; };
 		E6EDF608270A131E001DC50B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EDF607270A131E001DC50B /* SceneDelegate.swift */; };
 		E6EDF60A270A131E001DC50B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EDF609270A131E001DC50B /* ViewController.swift */; };
@@ -29,6 +30,7 @@
 		E65CE9FC270F07EE00F96FA5 /* A.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = A.wav; sourceTree = "<group>"; };
 		E65CE9FD270F07EE00F96FA5 /* E.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = E.wav; sourceTree = "<group>"; };
 		E65CE9FE270F07EF00F96FA5 /* B.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = B.wav; sourceTree = "<group>"; };
+		E65CEA0B270F094E00F96FA5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E6EDF602270A131E001DC50B /* Xylophone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xylophone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6EDF605270A131E001DC50B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6EDF607270A131E001DC50B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,36 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		E65CEA06270F08F900F96FA5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E6EDF609270A131E001DC50B /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E65CEA08270F090C00F96FA5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E65CEA09270F091300F96FA5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E65CEA0A270F091C00F96FA5 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E65CEA0B270F094E00F96FA5 /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		E6EDF5F9270A131E001DC50B = {
 			isa = PBXGroup;
 			children = (
@@ -82,10 +114,13 @@
 		E6EDF604270A131E001DC50B /* Xylophone */ = {
 			isa = PBXGroup;
 			children = (
-				E65CE9F7270F07DD00F96FA5 /* Sounds */,
 				E6EDF605270A131E001DC50B /* AppDelegate.swift */,
 				E6EDF607270A131E001DC50B /* SceneDelegate.swift */,
-				E6EDF609270A131E001DC50B /* ViewController.swift */,
+				E65CEA09270F091300F96FA5 /* Models */,
+				E65CEA08270F090C00F96FA5 /* Views */,
+				E65CEA06270F08F900F96FA5 /* Controllers */,
+				E65CE9F7270F07DD00F96FA5 /* Sounds */,
+				E65CEA0A270F091C00F96FA5 /* Utilities */,
 				E6EDF60E270A1322001DC50B /* Assets.xcassets */,
 				E6EDF610270A1322001DC50B /* LaunchScreen.storyboard */,
 				E6EDF613270A1322001DC50B /* Info.plist */,
@@ -173,6 +208,7 @@
 				E6EDF60A270A131E001DC50B /* ViewController.swift in Sources */,
 				E6EDF606270A131E001DC50B /* AppDelegate.swift in Sources */,
 				E6EDF608270A131E001DC50B /* SceneDelegate.swift in Sources */,
+				E65CEA0C270F094E00F96FA5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
