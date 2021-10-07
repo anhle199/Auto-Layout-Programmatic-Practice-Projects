@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
-
+    
     let rootStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,6 +22,7 @@ class ViewController: UIViewController {
     
     var buttonBackgroundViews = [String: UIView]()
     var buttons = [String: UIButton]()
+    var player: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,26 @@ class ViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        setupSounds()
+    }
+    
+    func playSoundWith(buttonTitle: String) {
+        guard let url = Bundle.main.url(
+            forResource: Constants.Sound.filenames[buttonTitle],
+            withExtension: Constants.Sound.extension
+        ) else {
+            return
+        }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
+            
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.play()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
 }
@@ -86,16 +108,43 @@ extension ViewController {
             let button = buttons[buttonTitle]!
             
             constraints.append(contentsOf: [
-                button.topAnchor.constraint(equalTo: backgroundView.topAnchor),
-                backgroundView.trailingAnchor.constraint(equalToSystemSpacingAfter: button.trailingAnchor, multiplier: systemSpacingCount),
-                button.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
-                button.leadingAnchor.constraint(equalToSystemSpacingAfter: backgroundView.leadingAnchor, multiplier: systemSpacingCount),
+                button.topAnchor.constraint(
+                    equalTo: backgroundView.topAnchor
+                ),
+                backgroundView.trailingAnchor.constraint(
+                    equalToSystemSpacingAfter: button.trailingAnchor,
+                    multiplier: systemSpacingCount
+                ),
+                button.bottomAnchor.constraint(
+                    equalTo: backgroundView.bottomAnchor
+                ),
+                button.leadingAnchor.constraint(
+                    equalToSystemSpacingAfter: backgroundView.leadingAnchor,
+                    multiplier: systemSpacingCount
+                ),
             ])
             
             systemSpacingCount += 1.0
         }
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+}
+
+
+// MARK: - Setup Sounds.
+extension ViewController {
+    
+    @objc func buttonPressed(_ sender: UIButton) {
+        let buttonTitle = sender.titleLabel!.text!
+        playSoundWith(buttonTitle: buttonTitle)
+    }
+    
+    func setupSounds() {
+        for buttonTitle in buttons.keys {
+            buttons[buttonTitle]?.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        }
     }
     
 }
