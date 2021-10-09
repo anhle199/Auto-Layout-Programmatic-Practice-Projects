@@ -14,6 +14,9 @@
 		E6476EFA271024C000E52618 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6476EF8271024C000E52618 /* LaunchScreen.storyboard */; };
 		E6476F07271025B000E52618 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6476F06271025B000E52618 /* Constants.swift */; };
 		E6476F09271026EF00E52618 /* alarm_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6476F08271026EF00E52618 /* alarm_sound.mp3 */; };
+		E69C43D127114654002042E1 /* EggButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C43D027114654002042E1 /* EggButton.swift */; };
+		E69C43D327114B46002042E1 /* EggButtonBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C43D227114B46002042E1 /* EggButtonBackgroundView.swift */; };
+		E69C43D527114B89002042E1 /* EggButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C43D427114B89002042E1 /* EggButtonType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		E6476EFB271024C000E52618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6476F06271025B000E52618 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E6476F08271026EF00E52618 /* alarm_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_sound.mp3; sourceTree = "<group>"; };
+		E69C43D027114654002042E1 /* EggButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggButton.swift; sourceTree = "<group>"; };
+		E69C43D227114B46002042E1 /* EggButtonBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggButtonBackgroundView.swift; sourceTree = "<group>"; };
+		E69C43D427114B89002042E1 /* EggButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggButtonType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 		E6476F022710258200E52618 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E69C43CF271145F2002042E1 /* Customizes */,
 				E6476F042710259100E52618 /* Storyboards */,
 			);
 			path = Views;
@@ -89,6 +96,7 @@
 		E6476F032710258A00E52618 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E69C43D427114B89002042E1 /* EggButtonType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -116,6 +124,15 @@
 				E6476F08271026EF00E52618 /* alarm_sound.mp3 */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		E69C43CF271145F2002042E1 /* Customizes */ = {
+			isa = PBXGroup;
+			children = (
+				E69C43D027114654002042E1 /* EggButton.swift */,
+				E69C43D227114B46002042E1 /* EggButtonBackgroundView.swift */,
+			);
+			path = Customizes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,7 +206,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E69C43D327114B46002042E1 /* EggButtonBackgroundView.swift in Sources */,
 				E6476EF2271024BD00E52618 /* ViewController.swift in Sources */,
+				E69C43D527114B89002042E1 /* EggButtonType.swift in Sources */,
+				E69C43D127114654002042E1 /* EggButton.swift in Sources */,
 				E6476EEE271024BD00E52618 /* AppDelegate.swift in Sources */,
 				E6476EF0271024BD00E52618 /* SceneDelegate.swift in Sources */,
 				E6476F07271025B000E52618 /* Constants.swift in Sources */,

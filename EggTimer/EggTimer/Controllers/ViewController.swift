@@ -45,82 +45,19 @@ class ViewController: UIViewController {
         return stackView
     }()
     
-    let softEggView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-
-        return view
+    let softEggButton: EggButton = {
+        let eggButton = EggButton(type: .soft)
+        return eggButton
     }()
     
-    let softEggImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: Constants.Images.softEgg)
-        imageView.contentMode = .scaleAspectFit
-
-        return imageView
+    let mediumEggButton: EggButton = {
+        let eggButton = EggButton(type: .medium)
+        return eggButton
     }()
     
-    let softEggButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Soft", for: .normal)
-        button.tintColor = .label
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .black)
-        
-        return button
-    }()
-    
-    let mediumEggView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-
-        return view
-    }()
-    
-    let mediumEggImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: Constants.Images.mediumEgg)
-        imageView.contentMode = .scaleAspectFit
-
-        return imageView
-    }()
-    
-    let mediumEggButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Medium", for: .normal)
-        button.tintColor = .label
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .black)
-        
-        return button
-    }()
-
-    let hardEggView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-
-        return view
-    }()
-    
-    let hardEggImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: Constants.Images.hardEgg)
-        imageView.contentMode = .scaleAspectFit
-
-        return imageView
-    }()
-
-    let hardEggButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Hard", for: .normal)
-        button.tintColor = .label
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .black)
-        
-        return button
+    let hardEggButton: EggButton = {
+        let eggButton = EggButton(type: .hard)
+        return eggButton
     }()
     
     let timerView: UIView = {
@@ -165,17 +102,9 @@ extension ViewController {
         
         titleView.addSubview(titleLabel)
         
-        eggsStackView.addArrangedSubview(softEggView)
-        softEggView.addSubview(softEggImageView)
-        softEggView.addSubview(softEggButton)
-        
-        eggsStackView.addArrangedSubview(mediumEggView)
-        mediumEggView.addSubview(mediumEggImageView)
-        mediumEggView.addSubview(mediumEggButton)
-        
-        eggsStackView.addArrangedSubview(hardEggView)
-        hardEggView.addSubview(hardEggImageView)
-        hardEggView.addSubview(hardEggButton)
+        eggsStackView.addArrangedSubview(softEggButton)
+        eggsStackView.addArrangedSubview(mediumEggButton)
+        eggsStackView.addArrangedSubview(hardEggButton)
         
         timerView.addSubview(progressBar)
     }
@@ -194,30 +123,6 @@ extension ViewController {
             titleLabel.trailingAnchor.constraint(equalTo: titleView.trailingAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: titleView.leadingAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
-            
-            softEggImageView.topAnchor.constraint(equalTo: softEggView.topAnchor),
-            softEggImageView.trailingAnchor.constraint(equalTo: softEggView.trailingAnchor),
-            softEggImageView.bottomAnchor.constraint(equalTo: softEggView.bottomAnchor),
-            softEggImageView.leadingAnchor.constraint(equalTo: softEggView.leadingAnchor),
-            
-            softEggButton.centerXAnchor.constraint(equalTo: softEggView.centerXAnchor),
-            softEggButton.centerYAnchor.constraint(equalTo: softEggView.centerYAnchor),
-
-            mediumEggImageView.topAnchor.constraint(equalTo: mediumEggView.topAnchor),
-            mediumEggImageView.trailingAnchor.constraint(equalTo: mediumEggView.trailingAnchor),
-            mediumEggImageView.bottomAnchor.constraint(equalTo: mediumEggView.bottomAnchor),
-            mediumEggImageView.leadingAnchor.constraint(equalTo: mediumEggView.leadingAnchor),
-            
-            mediumEggButton.centerXAnchor.constraint(equalTo: mediumEggView.centerXAnchor),
-            mediumEggButton.centerYAnchor.constraint(equalTo: mediumEggView.centerYAnchor),
-            
-            hardEggImageView.topAnchor.constraint(equalTo: hardEggView.topAnchor),
-            hardEggImageView.trailingAnchor.constraint(equalTo: hardEggView.trailingAnchor),
-            hardEggImageView.bottomAnchor.constraint(equalTo: hardEggView.bottomAnchor),
-            hardEggImageView.leadingAnchor.constraint(equalTo: hardEggView.leadingAnchor),
-            
-            hardEggButton.centerXAnchor.constraint(equalTo: hardEggView.centerXAnchor),
-            hardEggButton.centerYAnchor.constraint(equalTo: hardEggView.centerYAnchor),
             
             progressBar.heightAnchor.constraint(equalToConstant: 5),
             progressBar.trailingAnchor.constraint(equalTo: timerView.trailingAnchor),
