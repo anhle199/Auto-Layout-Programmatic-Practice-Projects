@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -28,7 +29,7 @@ class ViewController: UIViewController {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "How do you like your eggs?"
+        label.text = Constants.titleLabelBeforeBurning
         label.font = .systemFont(ofSize: 30, weight: .regular)
         label.textColor = .darkGray
         label.textAlignment = .center
@@ -77,6 +78,12 @@ class ViewController: UIViewController {
         return progressBar
     }()
     
+    var totalTime = 0
+    var secondPassed = 0
+    var timer = Timer()
+    
+    var audioPlayer: AVAudioPlayer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -84,8 +91,34 @@ class ViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        
+        softEggButton.addTarget(self, action: #selector(eggButtonPressed), for: .touchUpInside)
+        mediumEggButton.addTarget(self, action: #selector(eggButtonPressed), for: .touchUpInside)
+        hardEggButton.addTarget(self, action: #selector(eggButtonPressed), for: .touchUpInside)
     }
-
+    
+    func getBurningTime(of type: EggButtonType) -> Int {
+        switch type {
+        case .soft:
+            return Constants.BurningTime.softEgg
+        case .medium:
+            return Constants.BurningTime.mediumEgg
+        case .hard:
+            return Constants.BurningTime.hardEgg
+        }
+    }
+    
+    func getButtonTitle(of type: EggButtonType) -> String {
+        switch type {
+        case .soft:
+            return Constants.ButtonTitle.softEgg
+        case .medium:
+            return Constants.ButtonTitle.mediumEgg
+        case .hard:
+            return Constants.ButtonTitle.hardEgg
+        }
+    }
+    
 }
 
 
@@ -129,6 +162,52 @@ extension ViewController {
             progressBar.leadingAnchor.constraint(equalTo: timerView.leadingAnchor),
             progressBar.centerYAnchor.constraint(equalTo: timerView.centerYAnchor),
         ])
+    }
+    
+}
+
+
+// MARK: - EggButton Action
+extension ViewController {
+    
+    @objc func eggButtonPressed(_ sender: EggButton) {
+        timer.invalidate()
+        secondPassed = 0
+        totalTime = getBurningTime(of: sender.type)
+        titleLabel.text = "\(getButtonTitle(of: sender.type)) egg is being burned..."
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTimer() {
+        if secondPassed < totalTime {
+            secondPassed += 1
+            progressBar.progress = Float(secondPassed) / Float(totalTime)
+            
+        } else {
+            timer.invalidate()
+            progressBar.progress = 0
+            titleLabel.text = Constants.titleLabelBurnFinished
+            playSound()
+        }
+    }
+    
+}
+
+
+// MARK: - Audio Player
+extension ViewController {
+    
+    func playSound() {
+        guard let url = Bundle.main.url(forResource: Constants.Sounds.alarm, withExtension: nil) else {
+            return
+        }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.play()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
 }

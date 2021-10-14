@@ -9,16 +9,8 @@ import UIKit
 
 class EggButton: UIButton {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-    
-    private let type: EggButtonType
-    private let backgroundView: EggButtonBackgroundView
+    let type: EggButtonType
+    let backgroundView: EggButtonBackgroundView
     
     init(frame: CGRect, type: EggButtonType = .soft) {
         self.type = type
@@ -37,12 +29,13 @@ class EggButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupViews() {
+    func setupViews() {
         translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.isUserInteractionEnabled = false
         addSubview(backgroundView)
     }
     
-    private func setupConstraints() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             backgroundView.topAnchor.constraint(equalTo: topAnchor),
             backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),

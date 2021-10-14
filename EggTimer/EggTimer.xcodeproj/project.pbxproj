@@ -16,7 +16,7 @@
 		E6476F09271026EF00E52618 /* alarm_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6476F08271026EF00E52618 /* alarm_sound.mp3 */; };
 		E69C43D127114654002042E1 /* EggButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C43D027114654002042E1 /* EggButton.swift */; };
 		E69C43D327114B46002042E1 /* EggButtonBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C43D227114B46002042E1 /* EggButtonBackgroundView.swift */; };
-		E69C43D527114B89002042E1 /* EggButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C43D427114B89002042E1 /* EggButtonType.swift */; };
+		E6DF1AD727174A4C003724A8 /* EggButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DF1AD627174A4C003724A8 /* EggButtonType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,7 @@
 		E6476F08271026EF00E52618 /* alarm_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_sound.mp3; sourceTree = "<group>"; };
 		E69C43D027114654002042E1 /* EggButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggButton.swift; sourceTree = "<group>"; };
 		E69C43D227114B46002042E1 /* EggButtonBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggButtonBackgroundView.swift; sourceTree = "<group>"; };
-		E69C43D427114B89002042E1 /* EggButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggButtonType.swift; sourceTree = "<group>"; };
+		E6DF1AD627174A4C003724A8 /* EggButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggButtonType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +96,7 @@
 		E6476F032710258A00E52618 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E69C43D427114B89002042E1 /* EggButtonType.swift */,
+				E6DF1AD627174A4C003724A8 /* EggButtonType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -208,11 +208,11 @@
 			files = (
 				E69C43D327114B46002042E1 /* EggButtonBackgroundView.swift in Sources */,
 				E6476EF2271024BD00E52618 /* ViewController.swift in Sources */,
-				E69C43D527114B89002042E1 /* EggButtonType.swift in Sources */,
 				E69C43D127114654002042E1 /* EggButton.swift in Sources */,
 				E6476EEE271024BD00E52618 /* AppDelegate.swift in Sources */,
 				E6476EF0271024BD00E52618 /* SceneDelegate.swift in Sources */,
 				E6476F07271025B000E52618 /* Constants.swift in Sources */,
+				E6DF1AD727174A4C003724A8 /* EggButtonType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,33 +9,11 @@ import UIKit
 
 class EggButtonBackgroundView: UIView {
     
-    private let type: EggButtonType
-    private let imageView = UIImageView()
-    private let label = UILabel()
+    let type: EggButtonType
+    let imageView = UIImageView()
+    let label = UILabel()
     
-    var currentImage: UIImage? {
-        switch type {
-        case .soft:
-            return UIImage(named: Constants.Images.softEgg)
-        case .medium:
-            return UIImage(named: Constants.Images.mediumEgg)
-        case .hard:
-            return UIImage(named: Constants.Images.hardEgg)
-        }
-    }
-    
-    var currentTitleLabel: String {
-        switch type {
-        case .soft:
-            return "Soft"
-        case .medium:
-            return "Medium"
-        case .hard:
-            return "Hard"
-        }
-    }
-    
-    init(frame: CGRect, type: EggButtonType = .soft) {
+    init(frame: CGRect, type: EggButtonType) {
         self.type = type
         super.init(frame: frame)
         
@@ -51,7 +29,29 @@ class EggButtonBackgroundView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupViews() {
+    var currentImage: UIImage? {
+        switch type {
+        case .soft:
+            return UIImage(named: Constants.Images.softEgg)
+        case .medium:
+            return UIImage(named: Constants.Images.mediumEgg)
+        case .hard:
+            return UIImage(named: Constants.Images.hardEgg)
+        }
+    }
+    
+    var currentTitleLabel: String {
+        switch type {
+        case .soft:
+            return Constants.ButtonTitle.softEgg
+        case .medium:
+            return Constants.ButtonTitle.mediumEgg
+        case .hard:
+            return Constants.ButtonTitle.hardEgg
+        }
+    }
+    
+    func setupViews() {
         translatesAutoresizingMaskIntoConstraints = false
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +67,7 @@ class EggButtonBackgroundView: UIView {
         addSubview(label)
     }
     
-    private func setupConstraints() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),

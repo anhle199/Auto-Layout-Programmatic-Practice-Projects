@@ -2,11 +2,9 @@
 //  EggButtonType.swift
 //  EggTimer
 //
-//  Created by Le Hoang Anh on 09/10/2021.
+//  Created by Le Hoang Anh on 14/10/2021.
 //
 
-import CoreText
-
-enum EggButtonType {
+enum EggButtonType: String {
     case soft, medium, hard
 }
