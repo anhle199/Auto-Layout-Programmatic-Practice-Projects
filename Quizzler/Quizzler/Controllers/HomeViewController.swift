@@ -9,6 +9,9 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    // Root stack view
     let rootStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -19,7 +22,7 @@ class HomeViewController: UIViewController {
         return stackView
     }()
     
-    // score label
+    // Score label
     let scoreLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -31,11 +34,11 @@ class HomeViewController: UIViewController {
         return label
     }()
     
-    // question label
+    // Question label
     let questionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Which is the largest organ in the human body?"
+        label.text = Constants.dummyQuestion.text
         label.font = .boldSystemFont(ofSize: 30)
         label.textColor = .white
         label.textAlignment = .left
@@ -44,55 +47,25 @@ class HomeViewController: UIViewController {
         return label
     }()
     
-    // first answer button
-    let firstAnswerButton: UIButton = {
-        let button = UIButton()
-        button.configAnswerButton(
-            title: "Heart",
-            titleColor: .white,
-            backgroundColor: UIColor(red: 49 / 255.0, green: 59 / 255.0, blue: 93 / 255.0, alpha: 1),
-            cornerRadius: 20,
-            borderWidth: 5,
-            borderColor: UIColor(red: 70 / 255.0, green: 99 / 255.0, blue: 144 / 255.0, alpha: 1)
-        )
-        button.titleLabel?.font = .systemFont(ofSize: 25)
-        
-        return button
+    // Three answer buttons
+    let answerButtons: [UIButton] = {
+        Constants.dummyQuestion.answers.map { answerText in
+            let button = UIButton()
+            button.configAnswerButton(
+                title: answerText,
+                titleColor: .white,
+                backgroundColor: Constants.AnswerButton.backgroundColor,
+                cornerRadius: Constants.AnswerButton.cornerRadius,
+                borderWidth: Constants.AnswerButton.borderWidth,
+                borderColor: Constants.AnswerButton.borderColor
+            )
+            button.titleLabel?.font = .systemFont(ofSize: Constants.AnswerButton.labelFontSize)
+            
+            return button
+        }
     }()
     
-    // second answer button
-    let secondAnswerButton: UIButton = {
-        let button = UIButton()
-        button.configAnswerButton(
-            title: "Skin",
-            titleColor: .white,
-            backgroundColor: UIColor(red: 49 / 255.0, green: 59 / 255.0, blue: 93 / 255.0, alpha: 1),
-            cornerRadius: 20,
-            borderWidth: 5,
-            borderColor: UIColor(red: 70 / 255.0, green: 99 / 255.0, blue: 144 / 255.0, alpha: 1)
-        )
-        button.titleLabel?.font = .systemFont(ofSize: 25)
-        
-        return button
-    }()
-    
-    // third answer button
-    let thirdAnswerButton: UIButton = {
-        let button = UIButton()
-        button.configAnswerButton(
-            title: "Large Intensive",
-            titleColor: .white,
-            backgroundColor: UIColor(red: 49 / 255.0, green: 59 / 255.0, blue: 93 / 255.0, alpha: 1),
-            cornerRadius: 20,
-            borderWidth: 5,
-            borderColor: UIColor(red: 70 / 255.0, green: 99 / 255.0, blue: 144 / 255.0, alpha: 1)
-        )
-        button.titleLabel?.font = .systemFont(ofSize: 25)
-        
-        return button
-    }()
-    
-    // progress bar
+    // Progress bar
     let progressBar: UIProgressView = {
         let progressView = UIProgressView()
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -104,151 +77,98 @@ class HomeViewController: UIViewController {
     }()
     
     
-    let questions = [
-        Question(
-            text: "Which is the largest organ in the human body?",
-            answers: ["Heart", "Skin", "Large Intestine"],
-            correctAnswer: "Skin"
-        ),
-        Question(
-            text: "Five dollars is worth how many nickels?",
-            answers: ["25", "50", "100"],
-            correctAnswer: "100"
-        ),
-        Question(
-            text: "What do the letters in the GMT time zone stand for?",
-            answers: ["Global Meridian Time", "Greenwich Mean Time", "General Median Time"],
-            correctAnswer: "Greenwich Mean Time"
-        ),
-        Question(
-            text: "What is the French word for 'hat'?",
-            answers: ["Chapeau", "Écharpe", "Bonnet"],
-            correctAnswer: "Chapeau"
-        ),
-        Question(
-            text: "In past times, what would a gentleman keep in his fob pocket?",
-            answers: ["Notebook", "Handkerchief", "Watch"],
-            correctAnswer: "Watch"
-        ),
-        Question(
-            text: "How would one say goodbye in Spanish?",
-            answers: ["Au Revoir", "Adiós", "Salir"],
-            correctAnswer: "Adiós"
-        ),
-        Question(
-            text: "Which of these colours is NOT featured in the logo for Google?",
-            answers: ["Green", "Orange", "Blue"],
-            correctAnswer: "Orange"
-        ),
-        Question(
-            text: "What alcoholic drink is made from molasses?",
-            answers: ["Rum", "Whisky", "Gin"],
-            correctAnswer: "Rum"
-        ),
-        Question(
-            text: "What type of animal was Harambe?",
-            answers: ["Panda", "Gorilla", "Crocodile"],
-            correctAnswer: "Gorilla"
-        ),
-        Question(
-            text: "Where is Tasmania located?",
-            answers: ["Indonesia", "Australia", "Scotland"],
-            correctAnswer: "Australia"
-        ),
-    ]
+    var quizManager = QuizManager()
     
-    var indexQuestion = 0
-    var score = 0
+    
+    // MARK: - Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .init(red: 49 / 255.0, green: 59 / 255.0, blue: 93 / 255.0, alpha: 1)
+        
+        view.backgroundColor = Constants.App.backgroundColor
         
         setupViews()
         setupConstraints()
         
         updateUI()
         
-        firstAnswerButton.addTarget(self, action: #selector(answerButtonPressed), for: .touchUpInside)
-        secondAnswerButton.addTarget(self, action: #selector(answerButtonPressed), for: .touchUpInside)
-        thirdAnswerButton.addTarget(self, action: #selector(answerButtonPressed), for: .touchUpInside)
-    }
-    
-    
-    @objc func answerButtonPressed(_ sender: UIButton) {
-        if let userAnswer = sender.titleLabel?.text {
-            let correctAnswer = questions[indexQuestion].correctAnswer
-            
-            if userAnswer == correctAnswer {
-                score += 1
-                sender.backgroundColor = .green
-            } else {
-                sender.backgroundColor = .red
-            }
-                        
-            if indexQuestion + 1 < questions.count {
-                indexQuestion += 1
-                Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { _ in
-                    sender.backgroundColor = UIColor(red: 49 / 255.0, green: 59 / 255.0, blue: 93 / 255.0, alpha: 1)
-                    self.updateUI()
-                }
-            }
+        answerButtons.forEach { button in
+            button.addTarget(self, action: #selector(answerButtonPressed), for: .touchUpInside)
         }
     }
     
-    func updateUI() {
-        let questionText = questions[indexQuestion].text
-        let answerShuffled = questions[indexQuestion].answers.shuffled()
-        
-        scoreLabel.text = "Score: \(score)"
-        progressBar.progress = Float(indexQuestion + 1) / Float(questions.count)
-        
-        questionLabel.text = questionText
-        firstAnswerButton.setTitle(answerShuffled[0], for: .normal)
-        secondAnswerButton.setTitle(answerShuffled[1], for: .normal)
-        thirdAnswerButton.setTitle(answerShuffled[2], for: .normal)
+    @objc func answerButtonPressed(_ sender: UIButton) {
+        if let userAnswer = sender.titleLabel?.text {
+            quizManager.checkUserAnswer(
+                userAnswer,
+                onCorrect: { sender.backgroundColor = .green },
+                onIncorrect: { sender.backgroundColor = .red }
+            )
+            
+            quizManager.nextQuestion()
+            Timer.scheduledTimer(
+                timeInterval: 0.2,
+                target: self,
+                selector: #selector(updateUI),
+                userInfo: nil,
+                repeats: false
+            )
+        }
     }
     
+    @objc func updateUI() {
+        let question = quizManager.currentQuestion
+        
+        scoreLabel.text = "Score: \(quizManager.currentScore)"
+        progressBar.progress = quizManager.currentProgressValue
+        
+        questionLabel.text = question.text
+        
+        for index in 0 ..< question.answers.count {
+            answerButtons[index].backgroundColor = Constants.AnswerButton.backgroundColor
+            answerButtons[index].setTitle(question.answers[index], for: .normal)
+        }
+    }
+    
+}
+
+
+// MARK: - Setup Views and Setup Constraints
+extension HomeViewController {
     
     func setupViews() {
         view.addSubview(rootStackView)
         
         rootStackView.addArrangedSubview(scoreLabel)
         rootStackView.addArrangedSubview(questionLabel)
-        rootStackView.addArrangedSubview(firstAnswerButton)
-        rootStackView.addArrangedSubview(secondAnswerButton)
-        rootStackView.addArrangedSubview(thirdAnswerButton)
+        rootStackView.addArrangedSubviews(answerButtons)
         rootStackView.addArrangedSubview(progressBar)
     }
     
     func setupConstraints() {
         let marginLayout = view.layoutMarginsGuide
+        var constraints = [NSLayoutConstraint]()
         
-        // Add constraints for root stack view.
-        NSLayoutConstraint.activate([
+        constraints.append(contentsOf: [
+            // Add constraints for root stack view.
             rootStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             rootStackView.trailingAnchor.constraint(equalTo: marginLayout.trailingAnchor),
             rootStackView.bottomAnchor.constraint(equalTo: marginLayout.bottomAnchor),
             rootStackView.leadingAnchor.constraint(equalTo: marginLayout.leadingAnchor),
-        ])
-        
-        // Add constraints for score label.
-        NSLayoutConstraint.activate([
+            
+            // Add constraints for score label.
             scoreLabel.topAnchor.constraint(equalTo: rootStackView.topAnchor),
             scoreLabel.heightAnchor.constraint(lessThanOrEqualToConstant: 40),
+            
+            // Add constraints for progress bar.
+            progressBar.heightAnchor.constraint(equalToConstant: 10),
         ])
         
         // Add constraints for three answer buttons.
-        NSLayoutConstraint.activate([
-            firstAnswerButton.heightAnchor.constraint(equalToConstant: 80),
-            secondAnswerButton.heightAnchor.constraint(equalToConstant: 80),
-            thirdAnswerButton.heightAnchor.constraint(equalToConstant: 80),
-        ])
+        constraints.append(contentsOf: answerButtons.map { $0.heightAnchor.constraint(equalToConstant: 80) })
         
-        // Add constraints for progress bar.
-        NSLayoutConstraint.activate([
-            progressBar.heightAnchor.constraint(equalToConstant: 10),
-        ])
+        // Actives all constraints.
+        NSLayoutConstraint.activate(constraints)
     }
     
 }

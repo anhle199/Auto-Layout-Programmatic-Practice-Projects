@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E602BA1B2723241A002D9EA4 /* QuizManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E602BA1A2723241A002D9EA4 /* QuizManager.swift */; };
+		E602BA1D27232465002D9EA4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E602BA1C27232465002D9EA4 /* Constants.swift */; };
+		E602BA1F27232B62002D9EA4 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E602BA1E27232B62002D9EA4 /* UIStackView+Extensions.swift */; };
 		E62FEE3827187965009507C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62FEE3727187965009507C1 /* AppDelegate.swift */; };
 		E62FEE3A27187965009507C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62FEE3927187965009507C1 /* SceneDelegate.swift */; };
 		E62FEE3C27187965009507C1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62FEE3B27187965009507C1 /* HomeViewController.swift */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E602BA1A2723241A002D9EA4 /* QuizManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizManager.swift; sourceTree = "<group>"; };
+		E602BA1C27232465002D9EA4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E602BA1E27232B62002D9EA4 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		E62FEE3427187965009507C1 /* Quizzler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quizzler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E62FEE3727187965009507C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E62FEE3927187965009507C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				E6598CB5271930EA00570974 /* Question.swift */,
+				E602BA1A2723241A002D9EA4 /* QuizManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -98,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				E6598CB327192B7100570974 /* UIButton+Extensions.swift */,
+				E602BA1C27232465002D9EA4 /* Constants.swift */,
+				E602BA1E27232B62002D9EA4 /* UIStackView+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -173,9 +182,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6598CB6271930EA00570974 /* Question.swift in Sources */,
+				E602BA1F27232B62002D9EA4 /* UIStackView+Extensions.swift in Sources */,
 				E62FEE3C27187965009507C1 /* HomeViewController.swift in Sources */,
 				E62FEE3827187965009507C1 /* AppDelegate.swift in Sources */,
 				E6598CB427192B7100570974 /* UIButton+Extensions.swift in Sources */,
+				E602BA1D27232465002D9EA4 /* Constants.swift in Sources */,
+				E602BA1B2723241A002D9EA4 /* QuizManager.swift in Sources */,
 				E62FEE3A27187965009507C1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
