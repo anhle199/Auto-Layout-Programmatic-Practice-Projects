@@ -151,6 +151,7 @@ class CalculateViewController: UIViewController {
     var labelPortraitHeightConstraint: NSLayoutConstraint?
     var labelLandscapeHeightConstraint: NSLayoutConstraint?
     
+    var calculatorBrain = CalculatorBrain()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -187,7 +188,16 @@ class CalculateViewController: UIViewController {
     }
     
     @objc func calculateButtonPressed(_ sender: UIButton) {
-        let resultVC = ResultViewController()
+        let height = heightSlider.value
+        let weight = weightSlider.value
+        calculatorBrain.calculateBMI(height: height, weight: weight)
+        
+        let resultVC = ResultViewController(
+            bmiValue: calculatorBrain.getBMIValue(),
+            advice: calculatorBrain.getAdvice(),
+            color: calculatorBrain.getColor()
+        )
+        
         present(resultVC, animated: true, completion: nil)
     }
     

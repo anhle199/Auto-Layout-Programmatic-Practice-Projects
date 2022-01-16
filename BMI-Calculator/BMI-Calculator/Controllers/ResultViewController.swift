@@ -8,7 +8,7 @@
 import UIKit
 
 class ResultViewController: UIViewController {
-
+    
     let backgroundImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "result_background")!)
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -78,14 +78,37 @@ class ResultViewController: UIViewController {
         return button
     }()
     
-    var resultLabelStackViewPortraitHeightConstraint: NSLayoutConstraint?
-    var resultLabelStackViewLandscapeHeightConstraint: NSLayoutConstraint?
+    private var resultLabelStackViewPortraitHeightConstraint: NSLayoutConstraint?
+    private var resultLabelStackViewLandscapeHeightConstraint: NSLayoutConstraint?
     
+    private var bmiValue: String?
+    private var advice: String?
+    private var color: UIColor?
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.bmiValue = "0"
+        self.advice = "Nothing"
+        self.color = .gray
+    }
+
+    convenience init(bmiValue: String, advice: String, color: UIColor) {
+        self.init()
+        
+        self.bmiValue = bmiValue
+        self.advice = advice
+        self.color = color
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor(
+        view.backgroundColor = color ?? UIColor(
             red: 51 / 255.0, green: 123 / 255.0, blue: 197 / 255.0, alpha: 1
         )
         
@@ -99,9 +122,8 @@ class ResultViewController: UIViewController {
         setupViews()
         setupConstraints()
         
-        // These two lines will be removed when starting code business logic
-        resultValueLabel.text = "19.5"
-        suggestionLabel.text = "EAT SOME MORE SNACKS!"
+        resultValueLabel.text = bmiValue ?? "19.5"
+        suggestionLabel.text = advice ?? "EAT SOME MORE SNACKS!"
         
         recalculateButton.addTarget(
             self, action: #selector(recalculateButtonPressed), for: .touchUpInside
